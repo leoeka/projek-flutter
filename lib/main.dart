@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/flutter_widget/image_widget.dart';
 import 'package:flutter_application_1/flutter_widget/test_widget.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_application_1/flutter_widget/fab_widget.dart';
+import 'package:flutter_application_1/flutter_widget/loading_cupertino.dart';
 
 void main() {
   runApp(const MyApp());
+  //runApp(FabWidget());
 }
 
 class MyApp extends StatelessWidget {
@@ -14,10 +19,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
+        //This is the theme of your application.
         //
         // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a blue toolbar. Then, without quitting the app,
+        // the application has a purple toolbar. Then, without quitting the app,
         // try changing the seedColor in the colorScheme below to Colors.green
         // and then invoke "hot reload" (save your changes or press the "hot
         // reload" button in a Flutter-supported IDE, or press "r" if you used
@@ -28,11 +33,11 @@ class MyApp extends StatelessWidget {
         // restart instead.
         //
         // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 229, 33, 19)),
+         //tested with just a hot reload.
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Belajar flutter'),
+      home: const MyHomePage(title: 'Belajar Flutter'),
     );
   }
 }
@@ -66,17 +71,6 @@ class _MyHomePageState extends State<MyHomePage> {
       // _counter without calling setState(), then the build method would not be
       // called again, and so nothing would appear to happen.
       _counter++;
-    });
-  }
-
-  void _decrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter--;
     });
   }
 
@@ -118,14 +112,27 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const TextWidget(),
-             
+            const MyImageWidget(),
+              
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            const SizedBox(height: 20),//new
+            //NEW
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoadingCupertino()),
+                );    
+            },
+            child: const Text('Tampikan LoadingCupertino'),
+            ),
           ],
         ),
       ),
+      
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
